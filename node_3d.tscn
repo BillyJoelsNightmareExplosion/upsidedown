@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7s682513whrk"]
+
+[sub_resource type="Curve3D" id="Curve3D_osf1y"]
+bake_interval = 22.9
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.799906, 0.768424, -0.695027, 0, 0, 0, 0, 0, 0, 0.343698, -0.750962, -0.264496, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, -0.799906, 0.768424, -0.695027),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_oqxiw"]
+
+[node name="Node3D" type="Path3D"]
+curve = SubResource("Curve3D_osf1y")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.352328, 0.729284, -0.586524, 2.98023e-08, 0.626711, 0.779252, 0.935877, 0.274552, -0.220808, -0.799906, 0.768424, -0.695027)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D"]
+mesh = SubResource("BoxMesh_oqxiw")
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.480445, 0.609473, -0.630646, 0.147985, 0.765101, 0.626674, 0.864449, 0.207756, -0.457782, 0.376056, -0.562796, -0.0111265)
+progress = 2.43489
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D2"]
+mesh = SubResource("BoxMesh_oqxiw")
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.958217, 0.162678, 0.235277, -0.121531, 0.513059, -0.849706, -0.258939, -0.842796, -0.471852, -0.0571699, 2.03303, 1.93369)
+progress = 5.80235
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D3"]
+mesh = SubResource("BoxMesh_oqxiw")
+
+[node name="PathFollow3D4" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.836666, 0.276348, -0.472886, 0.33591, 0.940841, -0.0445039, 0.432612, -0.196082, -0.879999, 0.278957, 0.718155, 1.15425)
+progress = 3.8453
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D4"]
+mesh = SubResource("BoxMesh_oqxiw")

@@ -18,28 +18,28 @@ script = ExtResource("1_puswj")
 wheee = 0.04
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
-transform = Transform3D(0.126312, -0.669243, 0.732142, -0.627456, 0.517714, 0.581484, -0.768222, -0.532888, -0.354556, -0.403367, -1.79166, 7.07937)
+transform = Transform3D(0.126313, -0.66924, 0.732145, -0.627454, 0.517717, 0.581483, -0.768223, -0.532889, -0.354551, -0.403374, -1.79165, 7.07936)
 progress = 17.5137
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D"]
 mesh = SubResource("BoxMesh_oqxiw")
 
 [node name="PathFollow3D2" type="PathFollow3D" parent="."]
-transform = Transform3D(-0.0181874, 0.663618, -0.747717, 2.97981e-08, 0.747798, 0.663766, 0.999694, 0.0120732, -0.0136032, -2.08338, 0.593901, 1.99918)
+transform = Transform3D(-0.0181875, 0.663618, -0.747717, 0, 0.747798, 0.663766, 0.999694, 0.0120732, -0.0136032, -2.08338, 0.5939, 1.99918)
 progress = 0.592971
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D2"]
 mesh = SubResource("BoxMesh_oqxiw")
 
 [node name="PathFollow3D3" type="PathFollow3D" parent="."]
-transform = Transform3D(0.0215574, -0.998759, 0.0432457, -0.279891, -0.0475555, -0.958785, 0.959705, 0.00856545, -0.280594, 0.0525127, 1.72625, 2.6631)
+transform = Transform3D(0.0215574, -0.998759, 0.0432458, -0.279891, -0.0475555, -0.958785, 0.959705, 0.00856544, -0.280594, 0.0525127, 1.72625, 2.6631)
 progress = 7.92776
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D3"]
 mesh = SubResource("BoxMesh_oqxiw")
 
 [node name="PathFollow3D4" type="PathFollow3D" parent="."]
-transform = Transform3D(0.0384259, -0.999094, -0.0138174, -0.969171, -0.0339057, -0.2437, 0.243025, 0.0227578, -0.969679, 0.466414, -0.964937, 6.6886)
+transform = Transform3D(0.0384259, -0.999094, -0.0138174, -0.96917, -0.0339057, -0.243702, 0.243027, 0.0227578, -0.969678, 0.466413, -0.96493, 6.68859)
 progress = 11.7349
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D4"]

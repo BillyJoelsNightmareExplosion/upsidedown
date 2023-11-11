@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmee6cv72xfw6"]
+
+[ext_resource type="PackedScene" uid="uid://cu2ldr545e0ua" path="res://level/prefabs/wall.tscn" id="1_si5vd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i1mud"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtsnm"]
+size = Vector3(26.4281, 0.366325, 26.1868)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b187j"]
+albedo_color = Color(0.305882, 1, 0.529412, 1)
+
+[node name="level" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13288, 0)
+physics_material_override = SubResource("PhysicsMaterial_i1mud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.999999, 0.00158691, -6.76548e-05, -0.00158688, 0.999999, 0.0003344, 6.81829e-05, -0.000334293, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_qtsnm")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_b187j")
+size = Vector3(26.1559, 0.255946, 25.9277)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999999, 0.0015869, -6.76527e-05, -0.00112261, 0.736272, 0.676685, 0.00112364, -0.676684, 0.736273, 1.14114e-08, 10.2304, 1.39698e-09)
+shadow_enabled = true
+
+[node name="wall" parent="." instance=ExtResource("1_si5vd")]
+transform = Transform3D(-0.926535, 0, 0.376208, 0, 1, 0, -0.376208, 0, -0.926535, -10.2203, 1.90735e-06, 12.3253)
+
+[node name="wall" parent="wall" instance=ExtResource("1_si5vd")]
+transform = Transform3D(0.995676, 0, -0.092892, 0, 1, 0, 0.092892, 0, 0.995676, -25.1769, 1.90735e-06, 10.168)
+
+[node name="wall" parent="wall/wall" instance=ExtResource("1_si5vd")]
+transform = Transform3D(0.850987, 0.000406302, -0.525186, -0.00960521, 0.999844, -0.0147903, 0.525098, 0.0176308, 0.850859, -18.5066, 1.90735e-06, -11.2045)

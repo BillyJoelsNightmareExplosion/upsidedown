@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxwicfnqucfck"]
+
+[ext_resource type="PackedScene" uid="uid://cmee6cv72xfw6" path="res://level/level.tscn" id="1_41g74"]
+[ext_resource type="Script" path="res://main.gd" id="1_fv74f"]
+[ext_resource type="PackedScene" uid="uid://bdv32odnhkcsv" path="res://player.tscn" id="2_4df1m"]
+
+[sub_resource type="Environment" id="Environment_nj81i"]
+sdfgi_enabled = true
+fog_enabled = true
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_fv74f")
+
+[node name="level" parent="." instance=ExtResource("1_41g74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328876, 0)
+
+[node name="player" parent="." instance=ExtResource("2_4df1m")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nj81i")

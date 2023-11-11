@@ -9,3 +9,31 @@ script = ExtResource("1_n0a4s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53615, 0, 5.86249)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84622, 0, 3.00834)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53615, 0, 5.86249)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84622, 0, 3.00834)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84622, 0, 3.00834)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53615, 0, 5.86249)
+mesh = SubResource("BoxMesh_a0tmn")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53615, 0, 5.86249)
+mesh = SubResource("BoxMesh_a0tmn")

@@ -47,3 +47,8 @@ move_spr={
 ]
 }
 config/icon="res://icon.png"
+
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player"

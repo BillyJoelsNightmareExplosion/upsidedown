@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cmee6cv72xfw6" path="res://level/level.tscn" id="1_41g74"]
 [ext_resource type="Script" path="res://main.gd" id="1_fv74f"]
-[ext_resource type="PackedScene" uid="uid://bdv32odnhkcsv" path="res://player.tscn" id="2_4df1m"]
+[ext_resource type="PackedScene" uid="uid://uub8okgwm51q" path="res://player/player.tscn" id="2_4df1m"]
 [ext_resource type="Texture2D" uid="uid://bb0pse5xkgnhq" path="res://level/sky.jpg" id="4_5cr8h"]
 [ext_resource type="AudioStream" uid="uid://cbuetb3q1otaa" path="res://music/Flying High (Like A Racoon).wav" id="4_xsesy"]
 
@@ -18,7 +18,6 @@ background_color = Color(0.0941176, 1, 0, 1)
 sky = SubResource("Sky_mv4s7")
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 1.13
-sdfgi_enabled = true
 glow_enabled = true
 fog_enabled = true
 fog_density = 0.003

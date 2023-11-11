@@ -10,8 +10,11 @@ extends CharacterBody3D
 @export var WALL_RUN_MIN_SPEED = 6
 
 @onready var head = $head
+@onready var body = $body
 @onready var wall_left_cast = $wallCastLeft
 @onready var wall_right_cast = $wallCastRight
+
+@onready var anim_tree = $body/AnimationTree
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -19,8 +22,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
     for wall_cast in [wall_left_cast, wall_right_cast]:
         wall_cast.target_position.x *= WALL_RUN_CLOSENESS
-    pass
-
+    
 func _input(event):
 
     #get mouse input for camera rotation
@@ -45,8 +47,13 @@ func _physics_process(delta):
         for wall_cast in [wall_left_cast, wall_right_cast]:
             if wall_cast.is_colliding():
                 wall_running = true
+                print(fmod(wall_cast.target_position.x, 1))
+                body.rotation_degrees.x = -20 * wall_cast.target_position.x
                 if velocity.y <= 0:
                     velocity.y = 0
+
+    if not wall_running:
+        body.rotation_degrees.x = 0
     
     if Input.is_action_just_pressed("ui_accept") and (on_floor or wall_running):
         velocity.y = JUMP_VELOCITY
@@ -68,5 +75,21 @@ func _physics_process(delta):
     else:
         velocity.x = move_toward(velocity.x, 0, speed)
         velocity.z = move_toward(velocity.z, 0, speed)
+
+    if Vector2(velocity.x, velocity.z).length() > WALL_RUN_MIN_SPEED:
+        pass
+
+    if Vector2(velocity.x, velocity.z).length() > WALL_RUN_MIN_SPEED and (on_floor or wall_running):
+        anim_tree.set("parameters/conditions/run", true)
+        anim_tree.set("parameters/conditions/idle", false)
+        anim_tree.set("parameters/conditions/walk", false)
+    elif Vector2(velocity.x, velocity.z).length()  and (on_floor or wall_running):
+        anim_tree.set("parameters/conditions/run", false)
+        anim_tree.set("parameters/conditions/idle", false)
+        anim_tree.set("parameters/conditions/walk", true)
+    else:
+        anim_tree.set("parameters/conditions/run", false)
+        anim_tree.set("parameters/conditions/idle", true)
+        anim_tree.set("parameters/conditions/walk", false)
 
     move_and_slide()

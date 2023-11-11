@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdv32odnhkcsv"]
+[gd_scene load_steps=16 format=3 uid="uid://uub8okgwm51q"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_ml0jg"]
-[ext_resource type="PackedScene" uid="uid://b4yctgflbggia" path="res://char/racoon_rigged.glb" id="2_obf11"]
-[ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="3_x7i71"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_dk76m"]
+[ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_3mvvo"]
+[ext_resource type="PackedScene" uid="uid://b4yctgflbggia" path="res://player/char/racoon_rigged.glb" id="3_46o17"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8p27"]
 radius = 0.785
@@ -63,7 +63,7 @@ transitions = ["walk", "run", SubResource("AnimationNodeStateMachineTransition_v
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_ml0jg")
+script = ExtResource("1_dk76m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.00872656, 0.999962, 0, -0.999962, 0.00872656, 0, 0.818, 0)
@@ -92,22 +92,22 @@ parameters/conditions/run = false
 parameters/conditions/walk = false
 
 [node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0826578, -0.00772247, 0.0182496, 0.0115371, 0.044891, 0.0712509, -0.0161115, 0.0717646, -0.0426059, -0.347386, -0.0661711, 0.941829)
+transform = Transform3D(-0.0817897, 0.0103375, -0.0207022, -0.0122426, 0.0451991, 0.0709377, 0.0196358, 0.0712403, -0.0420031, 0.407175, -0.0595055, 0.923272)
 top_level = true
-script = ExtResource("3_x7i71")
+script = ExtResource("2_3mvvo")
 bone_name = "tail1"
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
 [node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0829168, -0.00958293, 0.0160613, 0.00962915, 0.0407037, 0.0739966, -0.0160336, 0.0740025, -0.0386205, -1.08527, 1.06611, 0.606961)
+transform = Transform3D(-0.0802934, 0.0144063, -0.0238836, -0.0142214, 0.0414674, 0.0728231, 0.0239942, 0.0727868, -0.0367609, -0.755522, 0.794443, 1.11566)
 top_level = true
-script = ExtResource("3_x7i71")
+script = ExtResource("2_3mvvo")
 bone_name = "tail2"
 stiffness = 0.5
 forward_axis = 0
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
-[node name="racoon_rigged" parent="Body" instance=ExtResource("2_obf11")]
+[node name="racoon_rigged" parent="Body" instance=ExtResource("3_46o17")]
 
 [node name="Skeleton3D" parent="Body/racoon_rigged/Armature" index="0"]
 bones/0/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
@@ -115,7 +115,7 @@ bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
 bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
 bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
 bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
-bones/3/rotation = Quaternion(-0.272368, -0.0201151, -0.0891529, 0.957843)
+bones/3/rotation = Quaternion(-0.270273, 0.0201687, 0.08939, 0.958413)
 bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
 bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
 bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)
@@ -129,5 +129,11 @@ bones/16/rotation = Quaternion(-0.185091, 0.00251814, -0.160738, 0.969483)
 bones/17/rotation = Quaternion(0.15593, -0.00410408, -0.275002, 0.948706)
 
 [node name="StateMachine" type="Node" parent="."]
+
+[node name="Run" type="Node" parent="StateMachine"]
+
+[node name="Air" type="Node" parent="StateMachine"]
+
+[node name="WallRun" type="Node" parent="StateMachine"]
 
 [editable path="Body/racoon_rigged"]

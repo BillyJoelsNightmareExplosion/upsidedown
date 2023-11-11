@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b4yctgflbggia"
-path="res://.godot/imported/racoon_rigged.glb-75c237f8bf37185f243b0254e0506f51.scn"
+path="res://.godot/imported/racoon_rigged.glb-542c0414f7729d2e82d3c5b823dcf154.scn"
 
 [deps]
 
-source_file="res://char/racoon_rigged.glb"
-dest_files=["res://.godot/imported/racoon_rigged.glb-75c237f8bf37185f243b0254e0506f51.scn"]
+source_file="res://player/char/racoon_rigged.glb"
+dest_files=["res://.godot/imported/racoon_rigged.glb-542c0414f7729d2e82d3c5b823dcf154.scn"]
 
 [params]
 

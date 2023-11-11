@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxwicfnqucfck"]
+[gd_scene load_steps=6 format=3 uid="uid://cxwicfnqucfck"]
 
 [ext_resource type="PackedScene" uid="uid://cmee6cv72xfw6" path="res://level/level.tscn" id="1_41g74"]
 [ext_resource type="Script" path="res://main.gd" id="1_fv74f"]
 [ext_resource type="PackedScene" uid="uid://bdv32odnhkcsv" path="res://player.tscn" id="2_4df1m"]
+[ext_resource type="AudioStream" uid="uid://cbuetb3q1otaa" path="res://music/Flying High (Like A Racoon).wav" id="4_xsesy"]
 
 [sub_resource type="Environment" id="Environment_nj81i"]
 sdfgi_enabled = true
@@ -18,3 +19,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328876, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nj81i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xsesy")
+autoplay = true

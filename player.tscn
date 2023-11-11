@@ -1,28 +1,133 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdv32odnhkcsv"]
+[gd_scene load_steps=16 format=3 uid="uid://bdv32odnhkcsv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ml0jg"]
+[ext_resource type="PackedScene" uid="uid://b4yctgflbggia" path="res://char/racoon_rigged.glb" id="2_obf11"]
+[ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="3_x7i71"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8p27"]
+radius = 0.785
+height = 2.325
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vtlqj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o3kj7"]
+animation = &"idle"
 
-[node name="player" type="CharacterBody3D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vhnxa"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_beafi"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5gjs"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mee5e"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0tar"]
+xfade_time = 1.0
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0clo6"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_psjgn"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmph8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2rb0d"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bw6hx"]
+states/Start/position = Vector2(165.333, 68)
+states/idle/node = SubResource("AnimationNodeAnimation_o3kj7")
+states/idle/position = Vector2(400.667, 149.333)
+states/run/node = SubResource("AnimationNodeAnimation_vhnxa")
+states/run/position = Vector2(560.667, 210.667)
+states/walk/node = SubResource("AnimationNodeAnimation_beafi")
+states/walk/position = Vector2(603.333, 100)
+transitions = ["walk", "run", SubResource("AnimationNodeStateMachineTransition_v5gjs"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_mee5e"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_u0tar"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0clo6"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_psjgn"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_dmph8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_2rb0d")]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_ml0jg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02793, 0)
+transform = Transform3D(1, 0, 0, 0, 0.00872656, 0.999962, 0, -0.999962, 0.00872656, 0, 0.818, 0)
 shape = SubResource("CapsuleShape3D_e8p27")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_vtlqj")
+[node name="Head" type="Node3D" parent="."]
 
-[node name="head" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="head"]
+[node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 0.941253, 0.337703, 0, -0.337703, 0.941253, 0, 2.82547, 4.13307)
 
-[node name="wallCastLeft" type="RayCast3D" parent="."]
+[node name="WallCastLeft" type="RayCast3D" parent="."]
 target_position = Vector3(1, 0, 0)
 
-[node name="wallCastRight" type="RayCast3D" parent="."]
+[node name="WallCastRight" type="RayCast3D" parent="."]
 target_position = Vector3(-1, 0, 0)
+
+[node name="Body" type="Node3D" parent="."]
+transform = Transform3D(-3.71547e-09, 0, 0.085, 0, 0.085, 0, -0.085, 0, -3.71547e-09, 0, 1.115, -0.85)
+
+[node name="AnimationTree" type="AnimationTree" parent="Body"]
+tree_root = SubResource("AnimationNodeStateMachine_bw6hx")
+anim_player = NodePath("../racoon_rigged/AnimationPlayer")
+active = true
+parameters/conditions/idle = false
+parameters/conditions/run = false
+parameters/conditions/walk = false
+
+[node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
+transform = Transform3D(-0.0826578, -0.00772247, 0.0182496, 0.0115371, 0.044891, 0.0712509, -0.0161115, 0.0717646, -0.0426059, -0.347386, -0.0661711, 0.941829)
+top_level = true
+script = ExtResource("3_x7i71")
+bone_name = "tail1"
+skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
+
+[node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
+transform = Transform3D(-0.0829168, -0.00958293, 0.0160613, 0.00962915, 0.0407037, 0.0739966, -0.0160336, 0.0740025, -0.0386205, -1.08527, 1.06611, 0.606961)
+top_level = true
+script = ExtResource("3_x7i71")
+bone_name = "tail2"
+stiffness = 0.5
+forward_axis = 0
+skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
+
+[node name="racoon_rigged" parent="Body" instance=ExtResource("2_obf11")]
+
+[node name="Skeleton3D" parent="Body/racoon_rigged/Armature" index="0"]
+bones/0/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
+bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
+bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
+bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
+bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
+bones/3/rotation = Quaternion(-0.272368, -0.0201151, -0.0891529, 0.957843)
+bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
+bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
+bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)
+bones/9/rotation = Quaternion(-0.500905, -0.0231506, 0.221236, 0.836429)
+bones/12/position = Vector3(-3.28595, -2.79393, 6.26375e-07)
+bones/12/rotation = Quaternion(0.932717, 0.0183515, -0.174939, -0.314798)
+bones/13/rotation = Quaternion(-0.267713, 0.0472023, 0.0514245, 0.960967)
+bones/15/position = Vector3(-3.28595, -2.79393, 4.02857e-07)
+bones/15/rotation = Quaternion(-0.458882, 0.284694, 0.834046, -0.112886)
+bones/16/rotation = Quaternion(-0.185091, 0.00251814, -0.160738, 0.969483)
+bones/17/rotation = Quaternion(0.15593, -0.00410408, -0.275002, 0.948706)
+
+[node name="StateMachine" type="Node" parent="."]
+
+[editable path="Body/racoon_rigged"]

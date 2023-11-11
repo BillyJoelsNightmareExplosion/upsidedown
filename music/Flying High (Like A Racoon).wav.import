@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cbuetb3q1otaa"
+path="res://.godot/imported/Flying High (Like A Racoon).wav-c1b92993ab7e29a8c578d01a17bb747c.sample"
+
+[deps]
+
+source_file="res://music/Flying High (Like A Racoon).wav"
+dest_files=["res://.godot/imported/Flying High (Like A Racoon).wav-c1b92993ab7e29a8c578d01a17bb747c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

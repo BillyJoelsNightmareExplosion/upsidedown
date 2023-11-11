@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7s682513whrk"]
 
-[ext_resource type="Script" path="res://the_big_circle.gd" id="1_puswj"]
+[ext_resource type="Script" path="res://test_scenes/the_big_circle.gd" id="1_mlscv"]
 
 [sub_resource type="Curve3D" id="Curve3D_osf1y"]
 bake_interval = 22.9
@@ -14,7 +14,7 @@ point_count = 5
 
 [node name="Node3D" type="Path3D"]
 curve = SubResource("Curve3D_osf1y")
-script = ExtResource("1_puswj")
+script = ExtResource("1_mlscv")
 wheee = 0.04
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]

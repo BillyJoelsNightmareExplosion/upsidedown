@@ -18,29 +18,36 @@ animation = &"run"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5gjs"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mee5e"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0tar"]
+xfade_time = 1.0
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0clo6"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_psjgn"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmph8"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2rb0d"]
+xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"run"
 

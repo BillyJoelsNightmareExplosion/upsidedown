@@ -1,13 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxwicfnqucfck"]
+[gd_scene load_steps=9 format=3 uid="uid://cxwicfnqucfck"]
 
 [ext_resource type="PackedScene" uid="uid://cmee6cv72xfw6" path="res://level/level.tscn" id="1_41g74"]
 [ext_resource type="Script" path="res://main.gd" id="1_fv74f"]
 [ext_resource type="PackedScene" uid="uid://bdv32odnhkcsv" path="res://player.tscn" id="2_4df1m"]
+[ext_resource type="Texture2D" uid="uid://bb0pse5xkgnhq" path="res://level/sky.jpg" id="4_5cr8h"]
 [ext_resource type="AudioStream" uid="uid://cbuetb3q1otaa" path="res://music/Flying High (Like A Racoon).wav" id="4_xsesy"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1oko6"]
+panorama = ExtResource("4_5cr8h")
+
+[sub_resource type="Sky" id="Sky_mv4s7"]
+sky_material = SubResource("PanoramaSkyMaterial_1oko6")
+
 [sub_resource type="Environment" id="Environment_nj81i"]
+background_mode = 2
+background_color = Color(0.0941176, 1, 0, 1)
+sky = SubResource("Sky_mv4s7")
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 1.13
 sdfgi_enabled = true
+glow_enabled = true
 fog_enabled = true
+fog_density = 0.003
+fog_aerial_perspective = 0.451
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_fv74f")
@@ -22,4 +37,3 @@ environment = SubResource("Environment_nj81i")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xsesy")
-autoplay = true

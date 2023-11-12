@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3x6lihaltco3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0dut6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ts0n"]
+
+[node name="collectable" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0dut6")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_0ts0n")

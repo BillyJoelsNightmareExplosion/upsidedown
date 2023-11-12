@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cmee6cv72xfw6"]
 
 [ext_resource type="PackedScene" uid="uid://cu2ldr545e0ua" path="res://level/prefabs/wall.tscn" id="1_si5vd"]
-[ext_resource type="PackedScene" uid="uid://yr48b1lf6y1s" path="res://level/terrain.tscn" id="2_laorx"]
+[ext_resource type="PackedScene" path="res://level/terrain.tscn" id="2_laorx"]
 [ext_resource type="PackedScene" uid="uid://c7ukmgy6gtvvm" path="res://level/prefabs/tree.tscn" id="3_v51q8"]
 [ext_resource type="PackedScene" uid="uid://dsypybobjfiym" path="res://level/prefabs/log.tscn" id="4_by6mv"]
 [ext_resource type="PackedScene" uid="uid://dd2cjvkuaumc1" path="res://level/prefabs/cab_1.tscn" id="5_y3h4n"]

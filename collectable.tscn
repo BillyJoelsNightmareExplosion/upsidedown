@@ -1,24 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3x6lihaltco3"]
+[gd_scene load_steps=6 format=3 uid="uid://c3x6lihaltco3"]
 
 [ext_resource type="Script" path="res://collectable.gd" id="1_q5hti"]
+[ext_resource type="ArrayMesh" uid="uid://2ex1wubgv250" path="res://level/prefabs/utensilFork.obj" id="2_k0m7t"]
+[ext_resource type="ArrayMesh" uid="uid://do4y26wr05s5h" path="res://level/prefabs/utensilKnife.obj" id="3_g1idg"]
+[ext_resource type="ArrayMesh" uid="uid://cifta42wocrwn" path="res://level/prefabs/utensilSpoon.obj" id="4_a4cu8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ts0n"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_0dut6"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_r0yv2"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_bemda"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_7rsur"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fo6nd"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_mljwx"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_gpd0u"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_dprue"]
 
 [node name="collectable" type="Node3D"]
 script = ExtResource("1_q5hti")
@@ -31,44 +18,52 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_0ts0n")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+[node name="fork1" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("SphereMesh_0dut6")
+mesh = ExtResource("2_k0m7t")
 skeleton = NodePath("../..")
 
-[node name="box" type="MeshInstance3D" parent="Area3D"]
+[node name="knife1" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("BoxMesh_r0yv2")
+mesh = ExtResource("3_g1idg")
 skeleton = NodePath("../..")
 
-[node name="capsule" type="MeshInstance3D" parent="Area3D"]
+[node name="spoon1" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("CapsuleMesh_bemda")
+mesh = ExtResource("4_a4cu8")
 skeleton = NodePath("../..")
 
-[node name="cylinder" type="MeshInstance3D" parent="Area3D"]
+[node name="fork2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("CylinderMesh_7rsur")
+mesh = ExtResource("2_k0m7t")
 skeleton = NodePath("../..")
 
-[node name="plane" type="MeshInstance3D" parent="Area3D"]
+[node name="knife2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("PlaneMesh_fo6nd")
+mesh = ExtResource("3_g1idg")
 skeleton = NodePath("../..")
 
-[node name="quad" type="MeshInstance3D" parent="Area3D"]
+[node name="spoon2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("QuadMesh_mljwx")
+mesh = ExtResource("4_a4cu8")
 skeleton = NodePath("../..")
 
-[node name="prism" type="MeshInstance3D" parent="Area3D"]
+[node name="fork3" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("PrismMesh_gpd0u")
+mesh = ExtResource("2_k0m7t")
 skeleton = NodePath("../..")
 
-[node name="torus" type="MeshInstance3D" parent="Area3D"]
+[node name="knife3" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(-0.877977, -2.21752, 0, 2.21752, -0.877977, 0, 0, 0, 2.385, 0, 0, 0)
 visible = false
-mesh = SubResource("TorusMesh_dprue")
+mesh = ExtResource("3_g1idg")
 skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

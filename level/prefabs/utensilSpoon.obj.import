@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cifta42wocrwn"
+path="res://.godot/imported/utensilSpoon.obj-f62fd2239d9a6920c35f66b4239df512.mesh"
+
+[deps]
+
+files=["res://.godot/imported/utensilSpoon.obj-f62fd2239d9a6920c35f66b4239df512.mesh"]
+
+source_file="res://level/prefabs/utensilSpoon.obj"
+dest_files=["res://.godot/imported/utensilSpoon.obj-f62fd2239d9a6920c35f66b4239df512.mesh", "res://.godot/imported/utensilSpoon.obj-f62fd2239d9a6920c35f66b4239df512.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

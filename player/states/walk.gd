@@ -5,17 +5,17 @@ func enter(_msg := {}):
 
 func physics_update(delta):
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("move_jum"):
 		state_machine.transition_to("Air", {do_jump = true})
 	# Sprinting
-	if Input.is_action_just_pressed("move_spr"):
+	elif Input.is_action_just_pressed("move_spr"):
 		state_machine.transition_to("Sprint")
-	#print("YOOO")
-	player.align_model_with_movement(delta)
-	# Movement ---------------------------
-	if player.direction.is_equal_approx(Vector3.ZERO):
+	# Idle
+	elif player.direction.is_equal_approx(Vector3.ZERO):
 		state_machine.transition_to("Idle")
+	# Movement ---------------------------
 	else:
 		player.velocity.x = player.direction.x * player.SPEED
 		player.velocity.z = player.direction.z * player.SPEED
 		player.velocity.y -= player.GRAVITY
+	player.align_model_with_movement(delta)

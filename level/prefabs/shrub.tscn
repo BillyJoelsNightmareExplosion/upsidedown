@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://deur4t3uf5p7p"]
+[gd_scene load_steps=6 format=3 uid="uid://bprd0hdanh3st"]
 
 [ext_resource type="PackedScene" uid="uid://pjuio881h18p" path="res://level/prefabs/meshes/shrub.glb" id="1_cx3ms"]
 [ext_resource type="Material" uid="uid://cslcbhenafiua" path="res://level/mat/leaves.tres" id="2_rd5l2"]

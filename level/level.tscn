@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmee6cv72xfw6"]
+[gd_scene load_steps=15 format=3 uid="uid://cmee6cv72xfw6"]
 
 [ext_resource type="PackedScene" uid="uid://cu2ldr545e0ua" path="res://level/prefabs/wall.tscn" id="1_si5vd"]
-[ext_resource type="PackedScene" path="res://level/terrain.tscn" id="2_laorx"]
+[ext_resource type="PackedScene" uid="uid://yr48b1lf6y1s" path="res://level/terrain.tscn" id="2_laorx"]
 [ext_resource type="PackedScene" uid="uid://c7ukmgy6gtvvm" path="res://level/prefabs/tree.tscn" id="3_v51q8"]
 [ext_resource type="PackedScene" uid="uid://dsypybobjfiym" path="res://level/prefabs/log.tscn" id="4_by6mv"]
 [ext_resource type="PackedScene" uid="uid://dd2cjvkuaumc1" path="res://level/prefabs/cab_1.tscn" id="5_y3h4n"]
@@ -10,28 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://274g65vlu4l" path="res://level/prefabs/can_can.tscn" id="8_uqqlg"]
 [ext_resource type="PackedScene" uid="uid://5sbr8t0jac4y" path="res://level/prefabs/can_lid.tscn" id="9_n6tts"]
 [ext_resource type="PackedScene" uid="uid://btb4p1khn6hxs" path="res://level/prefabs/platform.tscn" id="10_gxdcw"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i1mud"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qtsnm"]
-size = Vector3(26.4281, 0.366325, 26.1868)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b187j"]
-albedo_color = Color(0.305882, 1, 0.529412, 1)
+[ext_resource type="PackedScene" uid="uid://c3x6lihaltco3" path="res://collectable.tscn" id="11_n3epd"]
+[ext_resource type="PackedScene" uid="uid://cm6jlit4erge8" path="res://level/prefabs/radiotower.tscn" id="12_b2gn0"]
+[ext_resource type="PackedScene" uid="uid://cy2d6353dj7lt" path="res://level/prefabs/ship_container.tscn" id="13_xdtxc"]
+[ext_resource type="PackedScene" uid="uid://deur4t3uf5p7p" path="res://level/prefabs/shrub.tscn" id="14_n7bfh"]
 
 [node name="level" type="Node3D"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13288, 0)
-physics_material_override = SubResource("PhysicsMaterial_i1mud")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.999999, 0.00158691, -6.76548e-05, -0.00158688, 0.999999, 0.0003344, 6.81829e-05, -0.000334293, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_qtsnm")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D"]
-material_override = SubResource("StandardMaterial3D_b187j")
-size = Vector3(26.1559, 0.255946, 25.9277)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999999, 0.0015869, -6.76527e-05, -0.00112261, 0.736272, 0.676685, 0.00112364, -0.676684, 0.736273, 1.14114e-08, 10.2304, 1.39698e-09)
@@ -117,3 +101,39 @@ transform = Transform3D(1, 0, 0, 0, 0.00336845, -0.999994, 0, 0.999994, 0.003368
 
 [node name="platform" parent="." instance=ExtResource("10_gxdcw")]
 transform = Transform3D(-0.291003, 0, -0.956722, 0, 1, 0, 0.956722, 0, -0.291003, 10.0551, 8.21002, 37.239)
+
+[node name="collectable" parent="." instance=ExtResource("11_n3epd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15514, 0.0590047, 1.61835)
+
+[node name="radiotower" parent="." instance=ExtResource("12_b2gn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8273, 24.5948, 84.3688)
+
+[node name="ship_container2" parent="." instance=ExtResource("13_xdtxc")]
+transform = Transform3D(-0.864906, 0, -0.501934, 0, 1, 0, 0.501934, 0, -0.864906, -61.9055, -0.265227, -21.0888)
+
+[node name="ship_container" parent="." instance=ExtResource("13_xdtxc")]
+transform = Transform3D(-0.913332, 0, 0.407215, 0, 1, 0, -0.407215, 0, -0.913332, -74.8161, -0.874881, 3.25359)
+
+[node name="ship_container3" parent="." instance=ExtResource("13_xdtxc")]
+transform = Transform3D(-0.111278, 0, 0.993789, 0, 1, 0, -0.993789, 0, -0.111278, -61.9055, 13.1852, -9.0024)
+
+[node name="shrub" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0189, -1.2035, 80.4651)
+
+[node name="shrub2" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.847193, 3.62944, 43.7079)
+
+[node name="shrub3" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17741, 2.79133, 68.0514)
+
+[node name="shrub4" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.2507, -1.49128, 54.7111)
+
+[node name="shrub5" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4077, -1.49128, 0.17004)
+
+[node name="shrub6" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.04498, -0.41952, -26.3041)
+
+[node name="shrub7" parent="." instance=ExtResource("14_n7bfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2124, -0.990843, -33.5439)

@@ -12,3 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func switch_scene(new_scene: PackedScene):
+	var node = new_scene.instantiate()
+	get_tree().get_root().add_child(node)

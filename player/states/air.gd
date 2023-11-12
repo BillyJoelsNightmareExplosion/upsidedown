@@ -20,12 +20,13 @@ func physics_update(delta):
 		if player.velocity.is_equal_approx(Vector3.ZERO):
 			state_machine.transition_to("Idle")
 			return
-		elif Input.is_action_pressed("move_spr"):
-			state_machine.transition_to("Sprint")
-			return
-		else:
-			state_machine.transition_to("Walk")
-			return
+		elif is_equal_approx(player.velocity.y, 0): # this one caused an infinite loop :D 
+			if Input.is_action_pressed("move_spr"):
+				state_machine.transition_to("Sprint")
+				return
+			else:
+				state_machine.transition_to("Walk")
+				return
 	player.velocity.x = vec.x
 	player.velocity.z = vec.y
 	player.apply_gravity(delta)

@@ -1,6 +1,8 @@
 extends Control
 signal start_game_pressed
 
+@export var start_scene : PackedScene
+
 @onready var start_game_button: Button = $%StartGameButton
 @onready var options_menu: Control = $%OptionsMenu
 @onready var content: Control = $%Content 
@@ -23,4 +25,5 @@ func close_options():
 
 
 func _on_start_game_button_pressed():
-	emit_signal("start_game_pressed")
+	MenuTemplateManager.switch_scene(start_scene)
+	queue_free()

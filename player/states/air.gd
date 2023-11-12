@@ -47,12 +47,13 @@ func landing_check() -> bool:
 	return false
 
 func wall_run_check() -> bool:
+	var altitude = min(player.velocity.angle_to(Vector3.UP), player.velocity.angle_to(Vector3.DOWN))
+	if altitude > deg_to_rad(60):
+		return false
 	if not was_sprinting:
 		return false
 	if Input.is_action_just_pressed("move_jum"): # infinite loop catch
 		return false
-	#if player.velocity.y:
-	#	return false
 
 	var left_collide = player.wall_left_cast.is_colliding()
 	var right_collide = player.wall_right_cast.is_colliding()

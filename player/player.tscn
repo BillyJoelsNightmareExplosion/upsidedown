@@ -20,7 +20,7 @@ animation = &"walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5gjs"]
 xfade_time = 0.1
 advance_mode = 2
-advance_condition = &"run"
+advance_expression = "run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mee5e"]
 xfade_time = 0.1
@@ -92,14 +92,14 @@ parameters/conditions/run = false
 parameters/conditions/walk = false
 
 [node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0817897, 0.0103375, -0.0207022, -0.0122426, 0.0451991, 0.0709377, 0.0196358, 0.0712403, -0.0420031, 0.407175, -0.0595055, 0.923272)
+transform = Transform3D(-0.0846811, 0.00419481, -0.00604312, -0.00294664, 0.0446377, 0.0722758, 0.00674041, 0.0722141, -0.0443248, 0.118228, -0.0902073, 0.975266)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail1"
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
 [node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0802934, 0.0144063, -0.0238836, -0.0142214, 0.0414674, 0.0728231, 0.0239942, 0.0727868, -0.0367609, -0.755522, 0.794443, 1.11566)
+transform = Transform3D(-0.084723, 0.00440455, -0.00525447, -0.00254017, 0.0403413, 0.0747738, 0.00636844, 0.0746872, -0.0400782, -0.918647, 0.949786, 0.869275)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail2"
@@ -115,7 +115,7 @@ bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
 bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
 bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
 bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
-bones/3/rotation = Quaternion(-0.270273, 0.0201687, 0.08939, 0.958413)
+bones/3/rotation = Quaternion(-0.272014, 0.00645196, 0.0285958, 0.961847)
 bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
 bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
 bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)

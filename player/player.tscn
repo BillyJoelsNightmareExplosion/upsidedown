@@ -65,9 +65,12 @@ collision_layer = 2
 floor_max_angle = 1.22173
 floor_snap_length = 0.47
 script = ExtResource("1_dk76m")
+WALK_SPEED = 15.925
+SPRINT_SPEED = 21
 GROUND_ACCELERATION = 5.0
 GROUND_DEACCELERATION = 4.0
 GRAVITY_MOD = 1.4
+SPRINT_JUMP_CORRECTION_MOD = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974943, -0.153938)

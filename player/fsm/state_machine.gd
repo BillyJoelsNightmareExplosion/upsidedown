@@ -13,6 +13,8 @@ signal transitioned(state_name)
 @onready var state: State = get_node(initial_state)
 
 
+var last_delta # used to call physics_update() on a state when transitioned to
+
 func _ready() -> void:
 	await owner.ready
 	# The state machine assigns itself to teh State objects' state_machine prop.
@@ -28,6 +30,7 @@ func _process(delta) -> void:
 	state.update(delta)
 
 func _physics_process(delta):
+	last_delta = delta
 	state.physics_update(delta)
 
 # This function calls the current state's exit() function, then changes the active state,
@@ -42,5 +45,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
+	state.physics_update(last_delta)
 	emit_signal("transitioned", state.name)
 	#print("transitioned to ", target_state_name)

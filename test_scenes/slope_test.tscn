@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcwlgl7tdfuoe"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_6lt5l"]
+[ext_resource type="PackedScene" uid="uid://uub8okgwm51q" path="res://player/player.tscn" id="3_tsujb"]
+[ext_resource type="Texture2D" uid="uid://bb0pse5xkgnhq" path="res://level/sky.jpg" id="4_3kjax"]
+[ext_resource type="AudioStream" uid="uid://cbuetb3q1otaa" path="res://music/Flying High (Like A Racoon).wav" id="5_16k85"]
+[ext_resource type="PackedScene" uid="uid://b3di0ijx77qu4" path="res://test_scenes/big_ramp_terrain.tscn" id="5_suugj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1oko6"]
+panorama = ExtResource("4_3kjax")
+
+[sub_resource type="Sky" id="Sky_mv4s7"]
+sky_material = SubResource("PanoramaSkyMaterial_1oko6")
+
+[sub_resource type="Environment" id="Environment_nj81i"]
+background_mode = 2
+background_color = Color(0.0941176, 1, 0, 1)
+sky = SubResource("Sky_mv4s7")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.5
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.003
+fog_aerial_perspective = 0.451
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_6lt5l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("3_tsujb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13902, 0)
+floor_max_angle = 3.14159
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nj81i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_16k85")
+
+[node name="big ramp" parent="." instance=ExtResource("5_suugj")]

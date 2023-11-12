@@ -11,13 +11,9 @@ func enter(msg := {}):
 	#player.anim_tree.active = false
 
 func physics_update(delta):
+	
 	var vec = calculate_xz_vector(Vector2(player.velocity.x, player.velocity.z), Vector2(player.direction.x, player.direction.z), delta)
-	player.velocity.x = vec.x
-	player.velocity.z = vec.y
-
-	player.apply_gravity(delta)
-	player.align_model_with_xz_velocity(delta)
-
+	
 	# Landing check
 	if player.is_on_floor():
 		#player.anim_tree.active = true
@@ -30,6 +26,12 @@ func physics_update(delta):
 		else:
 			state_machine.transition_to("Walk")
 			return
+	player.velocity.x = vec.x
+	player.velocity.z = vec.y
+	player.apply_gravity(delta)
+	player.align_model_with_xz_velocity(delta)
+
+	
 
 
 

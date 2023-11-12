@@ -3,7 +3,10 @@ extends CharacterBody3D
 
 @export var LOOK_SENSITVITY = 0.1
 @export_category("Movement")
+@export_range(0, 4, 0.1) var GRAVITY_MOD = 1.0
 @export var SPEED = 5.0
+@export var GROUND_ACCELERATION = 3.0
+@export var GROUND_DEACCELERATION = 0.0
 @export var SPRINT_SPEED = 10
 @export var AIR_MOD_SPEED = 3.0
 @export var AIR_MOD_ACCELERATION = 5.0
@@ -62,4 +65,14 @@ func align_model_with_xz_velocity(delta):
 	#body.orthonormalize()
 
 func apply_gravity(delta):
-	velocity.y -= GRAVITY * delta
+	velocity.y -= GRAVITY * GRAVITY_MOD *delta
+
+func apply_movement(target_velocity: Vector2, delta):
+	var xz_velocity = Vector2(velocity.x, velocity.z)
+	var accelerating : bool = xz_velocity.length_squared() <= target_velocity.length_squared()
+	if accelerating:
+		xz_velocity = xz_velocity.slerp(target_velocity, GROUND_ACCELERATION * delta)
+	else:
+		xz_velocity = xz_velocity.slerp(target_velocity, GROUND_DEACCELERATION * delta)
+	velocity.x = xz_velocity.x
+	velocity.z = xz_velocity.y

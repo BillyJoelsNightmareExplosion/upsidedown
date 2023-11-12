@@ -8,7 +8,7 @@ func physics_update(delta):
 	if Input.is_action_just_pressed("move_jum"):
 		state_machine.transition_to("Air", {do_jump = true})
 	# Movement ---------------------------
-	if player.direction:
+	elif player.direction:
 		if Input.is_action_pressed("move_spr"):
 			state_machine.transition_to("Sprint")
 		else:

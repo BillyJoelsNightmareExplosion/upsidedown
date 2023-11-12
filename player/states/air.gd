@@ -15,13 +15,16 @@ func physics_update(delta):
 	player.velocity.z = vec.y
 
 	player.apply_gravity(delta)
+	player.align_model_with_xz_velocity(delta)
 
 	# Landing check
 	if player.is_on_floor():
-		if is_equal_approx(player.velocity.x, 0.0):
+		if player.velocity.is_equal_approx(Vector3.ZERO):
 			state_machine.transition_to("Idle")
+			return
 		else:
 			state_machine.transition_to("Walk")
+			return
 
 
 

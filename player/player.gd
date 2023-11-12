@@ -45,9 +45,18 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func align_model_with_movement(delta):
-	if not direction:
+	if direction.is_equal_approx(Vector3.ZERO):
 		return
 	var look_at_vec = direction.rotated(Vector3.UP, deg_to_rad(test))
+	var target_basis: Basis = body.transform.basis.looking_at(look_at_vec, Vector3.UP) 
+	body.transform.basis = body.transform.basis.slerp(target_basis, MODEL_ROTATION_SPEED * delta)
+	#body.orthonormalize()
+
+func align_model_with_xz_velocity(delta):
+	if velocity.is_equal_approx(Vector3.ZERO):
+		return
+	var xz_velocity = Vector3(velocity.x, 0, velocity.z)
+	var look_at_vec = xz_velocity.rotated(Vector3.UP, deg_to_rad(test))
 	var target_basis: Basis = body.transform.basis.looking_at(look_at_vec, Vector3.UP) 
 	body.transform.basis = body.transform.basis.slerp(target_basis, MODEL_ROTATION_SPEED * delta)
 	#body.orthonormalize()

@@ -16,8 +16,10 @@ sky_material = SubResource("PanoramaSkyMaterial_1oko6")
 background_mode = 2
 background_color = Color(0.0941176, 1, 0, 1)
 sky = SubResource("Sky_mv4s7")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
-ambient_light_energy = 1.13
+ambient_light_energy = 0.5
 glow_enabled = true
 fog_enabled = true
 fog_density = 0.003
@@ -30,8 +32,10 @@ script = ExtResource("1_fv74f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328876, 0)
 
 [node name="player" parent="." instance=ExtResource("2_4df1m")]
+visible = false
 AIR_MOD_SPEED = 3.0
 AIR_MOD_ACCELERATION = 50.0
+SPRINT_JUMP_MODIFIER = 0.15
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nj81i")

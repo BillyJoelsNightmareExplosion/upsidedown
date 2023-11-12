@@ -28,6 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta) -> void:
 	state.update(delta)
+	owner.get_node("Debug info").display_state = state.name
 
 func _physics_process(delta):
 	last_delta = delta
@@ -48,6 +49,6 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(msg)
-	state.physics_update(last_delta)
+	#state.physics_update(last_delta)
 	emit_signal("transitioned", state.name)
-	#print("transitioned to ", target_state_name)
+	print("transitioned to ", target_state_name)

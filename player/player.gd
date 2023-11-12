@@ -28,8 +28,8 @@ extends CharacterBody3D
 @onready var head = $Head
 @onready var camera_pivot = $Head/Pivot
 @onready var body = $Body
-@onready var wall_left_cast = $WallCastLeft
-@onready var wall_right_cast = $WallCastRight
+@onready var wall_left_cast = $Body/WallCastLeft
+@onready var wall_right_cast = $Body/WallCastRight
 
 @onready var anim_tree = $Body/AnimationTree
 @onready var anim_sm = $Body/AnimationTree["parameters/playback"]
@@ -38,6 +38,10 @@ var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
 var input_dir : Vector2
 var direction : Vector3
 var current_turn_vector : Vector2 # contained WITHIN the unit circle, not ON the unit circle. used for turning interpolation.
+
+func _ready():
+	for wall_cast in [wall_left_cast, wall_right_cast]:
+		wall_cast.target_position.x *= WALL_RUN_CLOSENESS
 
 func _input(event):
 	#get mouse input for camera rotation

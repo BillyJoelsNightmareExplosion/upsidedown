@@ -33,9 +33,9 @@ func _process(delta) -> void:
 func _physics_process(delta):
 	last_delta = delta
 	state.physics_update(delta)
-	if Input.is_action_just_pressed("place_pickup"):
-		print(state.name)
-		print(owner.direction)
+	#if Input.is_action_just_pressed("place_pickup"):
+		#print(state.name)
+		#print(owner.direction)
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.
@@ -51,4 +51,4 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.enter(msg)
 	#state.physics_update(last_delta)
 	emit_signal("transitioned", state.name)
-	print("transitioned to ", target_state_name)
+	#print("transitioned to ", target_state_name)

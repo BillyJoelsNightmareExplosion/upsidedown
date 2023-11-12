@@ -69,7 +69,7 @@ func wall_run_check() -> bool:
 
 	if not hit:
 		return false
-	print(side)
+	#print(side)
 	var normal = hit.get_collision_normal()
 	if player.velocity.normalized().dot(normal) > cos(deg_to_rad(30)):
 		return false

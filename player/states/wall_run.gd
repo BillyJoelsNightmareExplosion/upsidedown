@@ -31,7 +31,7 @@ func physics_update(delta):
 		has_collided_recently = false
 		delayed_collider_check()
 	if (Input.is_action_just_pressed("move_jum")):
-		print("jump press")
+		#print("jump press")
 		calculate_launch_vector()
 		state_machine.transition_to("Air", {
 			jump_vector = calculate_launch_vector(),
@@ -61,7 +61,7 @@ func set_travel_direction():
 func delayed_collider_check():
 	await get_tree().create_timer(0.2).timeout
 	if state_machine.state == self and not has_collided_recently:
-		print("miss")
+		#print("miss")
 		state_machine.transition_to("Air", {})
 
 

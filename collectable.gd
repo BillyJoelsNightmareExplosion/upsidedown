@@ -21,3 +21,9 @@ func _on_area_3d_body_entered(body):
 
 func is_player_touching_me() -> bool:
 	return $Area3D.get_overlapping_bodies().size() != 0
+
+var elapsed_time = 0
+
+func _process(delta):
+	elapsed_time += delta
+	$Area3D.position.y = (sin(elapsed_time * 3) / 4) + 1

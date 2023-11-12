@@ -39,6 +39,8 @@ points = PackedVector3Array(-1.66101, -0.904346, -1.02706, -1.60147, -1.2425, -0
 [node name="Plane_002" parent="." index="0"]
 mesh = SubResource("ArrayMesh_jmedb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1.75057, 0, 0, 0, 1.75057, 0, 0, 0, 3.04671, 0, 2.56902, 0)
 shape = SubResource("ConvexPolygonShape3D_5cp3b")

@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://dds8jra0a25o0"]
+
+[ext_resource type="Script" path="res://game_management/end_screen.gd" id="1_7w346"]
+[ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://addons/EasyMenus/Scenes/options_menu.tscn" id="3_dlk25"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7w346")
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -232.0
+offset_top = 67.0
+offset_right = 232.0
+offset_bottom = 555.0
+grow_horizontal = 2
+theme_override_constants/separation = 15
+metadata/_edit_group_ = true
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Game Title"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Content"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CopyButton" type="Button" parent="Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../MenuButton")
+focus_previous = NodePath("../MenuButton")
+theme_override_font_sizes/font_size = 30
+text = "Copy position code to clipboard"
+
+[node name="HSeparator2" type="HSeparator" parent="Content"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../CopyButton")
+focus_next = NodePath("../CopyButton")
+theme_override_font_sizes/font_size = 30
+text = "Quit
+"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_dlk25")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Content/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="Content/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="close" from="OptionsMenu" to="." method="close_options"]

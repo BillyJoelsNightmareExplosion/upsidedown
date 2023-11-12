@@ -77,7 +77,48 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -50.0
+offset_right = 196.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FindStart" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+offset_left = 275.0
+offset_top = -10.0
+offset_right = 625.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../../Content/StartGameButton")
+focus_neighbor_bottom = NodePath("../../Content/QuitButton")
+focus_next = NodePath("../../Content/QuitButton")
+focus_previous = NodePath("../../Content/StartGameButton")
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "Play find mode"
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Paste another player's code"
+
 [connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="open_options"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="quit"]
 [connection signal="close" from="OptionsMenu" to="." method="close_options"]
+[connection signal="pressed" from="Panel/FindStart" to="." method="_on_find_start_pressed"]
+[connection signal="text_changed" from="Panel/TextEdit" to="." method="_on_text_edit_text_changed"]

@@ -1,9 +1,9 @@
 extends Node
 
-var buffer_size : int # size of the uncompressed bite array, needed for decompression.
+var buffer_size = 136 # size of the uncompressed bite array, needed for decompression.
 # depends on the number of objects we want to encode, so it's calculated before compression
 
-func _ready():
+func test():
 	var positions : Array[Vector3] = []
 	for child in get_children():
 		positions.append(child.global_position)
@@ -19,9 +19,10 @@ func _ready():
 
 
 
-func generate_code(positions : Array[Vector3]) -> String:
+func generate_code(positions : Array) -> String:
 	var bytes = var_to_bytes(positions)
 	buffer_size = bytes.size()
+	print("BUFFER SIZE: ", buffer_size)
 	# not too sure which one to use here, but this seems good for now.
 	var compressed_bytes = bytes.compress(FileAccess.COMPRESSION_DEFLATE) 
 	var code = shuffle_string(compressed_bytes.hex_encode())

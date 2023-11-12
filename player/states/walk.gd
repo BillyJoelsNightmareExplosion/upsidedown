@@ -24,7 +24,7 @@ func physics_update(delta):
 		#player.velocity.x = player.direction.x * player.SPEED
 		#player.velocity.z = player.direction.z * player.SPEED
 		var xz_direction = Vector2(player.direction.x, player.direction.z)
-		var target_velocity = xz_direction * player.SPEED
+		var target_velocity = xz_direction * player.WALK_SPEED
 		player.apply_movement(target_velocity, delta)
 		player.apply_gravity(delta)
 

@@ -39,11 +39,11 @@ func physics_update(delta):
 # This function calculates an xz_vector as air movement is a lot more complicated than ground.
 func calculate_xz_vector(velocity : Vector2, input_dir : Vector2, delta) -> Vector2:
 	var target := input_dir
-	var delta_vec =  target * player.AIR_MOD_ACCELERATION * delta
+	var delta_vec =  target * player.AIR_CORRECTION_ACCELERATION * delta
 
 	if was_sprinting:
-		delta_vec *= player.SPRINT_JUMP_MODIFIER
-	var max_vel = max(velocity.length(), player.AIR_MOD_SPEED)
+		delta_vec *= player.SPRINT_JUMP_CORRECTION_MOD
+	var max_vel = max(velocity.length(), player.AIR_CORRECTION_SPEED)
 	return (velocity + delta_vec).limit_length(max_vel)
 
 

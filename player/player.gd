@@ -3,17 +3,23 @@ extends CharacterBody3D
 
 @export var LOOK_SENSITVITY = 0.1
 @export_category("Movement")
-@export_range(0, 4, 0.1) var GRAVITY_MOD = 1.0
-@export var SPEED = 5.0
+@export_subgroup("Ground")
+@export var WALK_SPEED = 5.0
+@export var SPRINT_SPEED = 10
+# How long it takes in seconds for the player to swap directions.
 @export var TURN_SPEED = 3.0
 @export var GROUND_ACCELERATION = 3.0
 @export var GROUND_DEACCELERATION = 0.0
-@export var SPRINT_SPEED = 10
-@export var AIR_MOD_SPEED = 3.0
-@export var AIR_MOD_ACCELERATION = 5.0
-@export_range(0.0, 1.0, 0.05) var SPRINT_JUMP_MODIFIER = 0.0 # If set to 0, player can't modify their course if they sprint jump)
+@export_subgroup("Air")
+@export_range(0, 4, 0.1) var GRAVITY_MOD = 1.0
+@export var AIR_CORRECTION_SPEED = 3.0
+@export var AIR_CORRECTION_ACCELERATION = 5.0
+@export_subgroup("Jump")
+# If set to 0, player can't modify their course if they sprint jump)
+@export_range(0.0, 1.0, 0.05) var SPRINT_JUMP_CORRECTION_MOD = 0.0 
 @export var JUMP_VELOCITY = 10
 @export var MAX_HEAD_TURN = 30.0
+@export_subgroup("Wall Run")
 @export var WALL_RUN_CLOSENESS = 2.0
 @export var WALL_RUN_MIN_SPEED = 6
 @export_category("Animation")

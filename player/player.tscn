@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://uub8okgwm51q"]
+[gd_scene load_steps=23 format=3 uid="uid://uub8okgwm51q"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_dk76m"]
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_3mvvo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://player/states/sprint.gd" id="6_5y0od"]
 [ext_resource type="Script" path="res://player/states/idle.gd" id="7_euwda"]
 [ext_resource type="Script" path="res://player/states/air.gd" id="8_27488"]
+[ext_resource type="Script" path="res://player/debug_display.gd" id="9_0oyoc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8p27"]
 radius = 0.785
@@ -64,9 +65,10 @@ floor_max_angle = 1.22173
 floor_snap_length = 0.47
 script = ExtResource("1_dk76m")
 GRAVITY_MOD = 1.4
+GROUND_ACCELERATION = 5.0
+GROUND_DEACCELERATION = 4.0
 AIR_MOD_ACCELERATION = 50.0
 SPRINT_JUMP_MODIFIER = 0.2
-test = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974943, -0.153938)
@@ -97,14 +99,14 @@ advance_expression_base_node = NodePath("../../StateMachine")
 active = true
 
 [node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0833787, -0.00708207, 0.0149276, 0.009089, 0.0444718, 0.0718655, -0.0137978, 0.072091, -0.0428662, -0.284783, -0.236793, 1.02578)
+transform = Transform3D(-0.0827079, 0.00875332, -0.0175435, -0.0102897, 0.045362, 0.0711436, 0.0166888, 0.0713489, -0.0430792, 0.285795, -0.227183, 1.03855)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail1"
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
 [node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0829002, -0.00971233, 0.0160697, 0.00964648, 0.0403819, 0.0741704, -0.0161093, 0.0741618, -0.0382821, -1.07497, 0.938007, 0.658836)
+transform = Transform3D(-0.083159, 0.00935218, -0.0149038, -0.00864441, 0.0409945, 0.0739576, 0.0153252, 0.0738714, -0.0391555, -0.886469, 0.740042, 1.03865)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail2"
@@ -121,7 +123,7 @@ bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
 bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
 bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
 bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
-bones/3/rotation = Quaternion(-0.272684, -0.0118821, -0.052663, 0.960588)
+bones/3/rotation = Quaternion(-0.268272, 0.030424, 0.134843, 0.953374)
 bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
 bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
 bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)
@@ -149,5 +151,55 @@ script = ExtResource("7_euwda")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("8_27488")
+
+[node name="Debug info" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_0oyoc")
+display_float_max = 10
+
+[node name="VectorDisplay" type="Panel" parent="Debug info"]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 93.0
+
+[node name="Center" type="Control" parent="Debug info/VectorDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Debug info/VectorDisplay/Center"]
+points = PackedVector2Array(0, 0, 40, 0)
+width = 4.0
+
+[node name="FloatDisplay" type="Panel" parent="Debug info"]
+layout_mode = 0
+offset_left = 104.0
+offset_right = 123.0
+offset_bottom = 93.0
+
+[node name="Center" type="Control" parent="Debug info/FloatDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Debug info/FloatDisplay/Center"]
+position = Vector2(0, 40)
+points = PackedVector2Array(0, -40, 0, 0)
+width = 4.0
 
 [editable path="Body/racoon_rigged"]

@@ -32,6 +32,9 @@ func _process(delta) -> void:
 func _physics_process(delta):
 	last_delta = delta
 	state.physics_update(delta)
+	if Input.is_action_just_pressed("place_pickup"):
+		print(state.name)
+		print(owner.direction)
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.

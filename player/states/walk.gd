@@ -8,6 +8,9 @@ func physics_update(delta):
 	if Input.is_action_just_pressed("move_jum"):
 		state_machine.transition_to("Air", {do_jump = true})
 		return
+	if not player.is_on_floor():
+		state_machine.transition_to("Air")
+		return
 	# Sprinting
 	elif Input.is_action_just_pressed("move_spr"):
 		state_machine.transition_to("Sprint")

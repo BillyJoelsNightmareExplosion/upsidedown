@@ -32,6 +32,7 @@ script = ExtResource("1_fv74f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.328876, 0)
 
 [node name="player" parent="." instance=ExtResource("2_4df1m")]
+TURN_SPEED = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nj81i")

@@ -40,3 +40,4 @@ environment = SubResource("Environment_nj81i")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xsesy")
+autoplay = true

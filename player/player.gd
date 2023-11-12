@@ -37,7 +37,7 @@ func _input(event):
 		# head.rotation_degrees.y = clamp(head.rotation_degrees.y, -1 * MAX_HEAD_TURN, MAX_HEAD_TURN)
 		# code for up/down look
 		camera_pivot.rotate_x(deg_to_rad(-event.relative.y * LOOK_SENSITVITY))
-		camera_pivot.rotation_degrees.x = clamp(head.rotation_degrees.x, -1 * MAX_HEAD_TURN, MAX_HEAD_TURN)
+		camera_pivot.rotation_degrees.x = clamp(camera_pivot.rotation_degrees.x, -1 * MAX_HEAD_TURN, MAX_HEAD_TURN)
 
 func _physics_process(_delta):
 	input_dir = Input.get_vector("move_lef", "move_rig", "move_for", "move_bac")

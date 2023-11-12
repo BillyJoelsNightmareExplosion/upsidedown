@@ -23,6 +23,9 @@ func _on_area_3d_body_entered(body):
 	if pickuppable:
 		queue_free()
 		GameManager.numPlaced -= 1
+		print("numPlaced: ", GameManager.numPlaced)
+		if GameManager.numPlaced == 0:
+			GameManager.display_find_victory_message()
 
 func is_player_touching_me() -> bool:
 	return $Area3D.get_overlapping_bodies().size() != 0

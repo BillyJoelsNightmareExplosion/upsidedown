@@ -11,12 +11,13 @@ var end_screen_scene = preload("res://addons/EasyMenus/Scenes/end_screen.tscn")
 var collectable_scene = preload("res://collectable.tscn")
 var text_display = preload("res://game_management/victory_message.tscn")
 var text_display_node : Control # this is stupid
+var fucking_finished = false # more stupid
 
 # if the player is placing a collectable, place it at the player's position and update the count
-func _process(delta):
+func _process(_add_constant_central_forcedelta):
 	if mode == "hide":
 		process_hide_mode()
-	else:
+	elif mode == "find":
 		process_find_mode()
 
 
@@ -29,7 +30,6 @@ func process_hide_mode():
 			# display victory text
 			text_display_node = text_display.instantiate()
 			generated_code = Serializer.generate_code(get_positions_of_placed_items())
-			DisplayServer.clipboard_set(GameManager.generated_code)
 			DisplayServer.clipboard_set(Serializer.generate_code(get_positions_of_placed_items()))
 			print("")
 			print(get_positions_of_placed_items())
@@ -48,10 +48,7 @@ func process_find_mode():
 	if Input.is_action_just_pressed("enter"):
 		if numPlaced == 0:
 			# progress to end screen
-			text_display_node.queue_free()
-
-			MenuTemplateManager.switch_scene(end_screen_scene)
-			get_tree().root.get_node("main").queue_free()
+			get_tree().quit()
 
 # Takes in position of the player, places the collectable at that position
 func place(position : Vector3):
@@ -83,11 +80,21 @@ func get_positions_of_placed_items() -> Array:
 
 
 func place_items_for_player_to_find():
+	await get_tree().create_timer(1).timeout
 	var positions = Serializer.decrypt_code(inputted_code)
-	for i in range(positions.size()):
+	print(positions.size())
+	print(positions)
+	for i in range(0, positions.size()):
+		print(i)
+		print(positions[i])
 		var newNode = collectable_scene.instantiate()
 		add_child(newNode)
 		newNode.global_position = positions[i]
 		newNode.models[i].visible = true
 		newNode.pickuppable = true
-		
+	print(numPlaced)
+
+func display_find_victory_message():
+	text_display_node = text_display.instantiate()
+	add_child(text_display_node)
+	fucking_finished = true

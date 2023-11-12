@@ -4,8 +4,9 @@ var initial_xz_velocity : Vector2
 var was_sprinting : bool
 
 func enter(msg := {}):
-	if (msg.has("do_jump")):
-		player.velocity.y = player.JUMP_VELOCITY
+	if (msg.has("jump_vector")):
+		player.velocity += msg["jump_vector"]  * player.JUMP_VELOCITY
+		player.velocity.y = msg["jump_vector"].y * player.JUMP_VELOCITY
 		initial_xz_velocity = Vector2(player.velocity.x, player.velocity.z)
 	was_sprinting = msg.has("was_sprinting")
 	#player.anim_tree.active = false
@@ -59,21 +60,25 @@ func wall_run_check() -> bool:
 	var right_collide = player.wall_right_cast.is_colliding()
 	var hit : RayCast3D
 	var side : String
-	if left_collide:
-		side = "left"
-		hit = player.wall_left_cast
 	if right_collide:
 		side = "right"
 		hit = player.wall_right_cast
+	if left_collide:
+		side = "left"
+		hit = player.wall_left_cast
 
-	if (left_collide or right_collide) and was_sprinting:
-		state_machine.transition_to("WallRun", {
-			wall_side = side,
-			entrance_direction = player.velocity,
-			wall_normal = hit.get_collision_normal()
-		})
-		return true
-	return false
+	if not hit:
+		return false
+	print(side)
+	var normal = hit.get_collision_normal()
+	if player.velocity.normalized().dot(normal) > cos(deg_to_rad(30)):
+		return false
+	state_machine.transition_to("WallRun", {
+		wall_side = side,
+		entrance_direction = player.velocity,
+		wall_normal = hit.get_collision_normal()
+	})
+	return true
 
 
 # This function calculates an xz_vector as air movement is a lot more complicated than ground.

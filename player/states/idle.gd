@@ -8,7 +8,7 @@ func physics_update(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("move_jum"):
 		#player.floor_stop_on_slope = false
-		state_machine.transition_to("Air", {do_jump = true})
+		state_machine.transition_to("Air", {jump_vector = Vector3.UP})
 		return
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")

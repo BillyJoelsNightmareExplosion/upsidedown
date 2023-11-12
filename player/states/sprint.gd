@@ -15,9 +15,9 @@ func physics_update(delta):
 	# Movement -------------------------------------------------------------------------------
 	player.align_model_with_movement(delta)
 
-	if owner.direction.is_equal_approx(Vector3.ZERO):
+	if player.direction.is_equal_approx(Vector3.ZERO):
 		state_machine.transition_to("Idle")
 	else:
-		player.velocity.x = owner.direction.x * owner.SPRINT_SPEED
-		player.velocity.z = owner.direction.z * owner.SPRINT_SPEED
-		player.velocity.y -= player.GRAVITY * delta
+		player.velocity.x = player.direction.x * player.SPRINT_SPEED
+		player.velocity.z = player.direction.z * player.SPRINT_SPEED
+		player.apply_gravity(delta)

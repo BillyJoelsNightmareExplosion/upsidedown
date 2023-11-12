@@ -17,5 +17,6 @@ func physics_update(delta):
 	else:
 		player.velocity.x = player.direction.x * player.SPEED
 		player.velocity.z = player.direction.z * player.SPEED
-		player.velocity.y -= player.GRAVITY
+		player.apply_gravity(delta)
+
 	player.align_model_with_movement(delta)

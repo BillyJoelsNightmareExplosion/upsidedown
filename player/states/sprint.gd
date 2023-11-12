@@ -13,6 +13,8 @@ func physics_update(delta):
 		state_machine.transition_to("Air", {do_jump = true, was_sprinting = true})
 	
 	# Movement -------------------------------------------------------------------------------
+	player.align_model_with_movement(delta)
+
 	if owner.direction.is_equal_approx(Vector3.ZERO):
 		state_machine.transition_to("Idle")
 	else:

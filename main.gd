@@ -13,3 +13,5 @@ func _input(event):
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pass # Replace with function body.
+	
+	

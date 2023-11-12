@@ -1,8 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://uub8okgwm51q"]
+[gd_scene load_steps=21 format=3 uid="uid://uub8okgwm51q"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_dk76m"]
 [ext_resource type="Script" path="res://addons/jigglebones/jigglebone.gd" id="2_3mvvo"]
 [ext_resource type="PackedScene" uid="uid://b4yctgflbggia" path="res://player/char/racoon_rigged.glb" id="3_46o17"]
+[ext_resource type="Script" path="res://player/fsm/state_machine.gd" id="4_hst0t"]
+[ext_resource type="Script" path="res://player/states/walk.gd" id="5_gponi"]
+[ext_resource type="Script" path="res://player/states/sprint.gd" id="6_5y0od"]
+[ext_resource type="Script" path="res://player/states/idle.gd" id="7_euwda"]
+[ext_resource type="Script" path="res://player/states/air.gd" id="8_27488"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e8p27"]
 radius = 0.785
@@ -19,13 +24,9 @@ animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5gjs"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mee5e"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0tar"]
 xfade_time = 1.0
@@ -33,37 +34,31 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0clo6"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_psjgn"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"idle"
+advance_expression = "Vector2(owner.velocity.x, owner.velocity.y).is_equal_approx(Vector2.ZERO)"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmph8"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2rb0d"]
 xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bw6hx"]
+states/Idle/node = SubResource("AnimationNodeAnimation_o3kj7")
+states/Idle/position = Vector2(400.667, 149.333)
+states/Sprint/node = SubResource("AnimationNodeAnimation_vhnxa")
+states/Sprint/position = Vector2(560.667, 210.667)
 states/Start/position = Vector2(165.333, 68)
-states/idle/node = SubResource("AnimationNodeAnimation_o3kj7")
-states/idle/position = Vector2(400.667, 149.333)
-states/run/node = SubResource("AnimationNodeAnimation_vhnxa")
-states/run/position = Vector2(560.667, 210.667)
-states/walk/node = SubResource("AnimationNodeAnimation_beafi")
-states/walk/position = Vector2(603.333, 100)
-transitions = ["walk", "run", SubResource("AnimationNodeStateMachineTransition_v5gjs"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_mee5e"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_u0tar"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0clo6"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_psjgn"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_dmph8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_2rb0d")]
+states/Walk/node = SubResource("AnimationNodeAnimation_beafi")
+states/Walk/position = Vector2(602.666, 100.222)
+transitions = ["Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_v5gjs"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_mee5e"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_u0tar"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_0clo6"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_psjgn"), "Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_dmph8"), "Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_2rb0d")]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_dk76m")
+AIR_MOD_SPEED = 8.73
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.00872656, 0.999962, 0, -0.999962, 0.00872656, 0, 0.818, 0)
@@ -86,20 +81,18 @@ transform = Transform3D(-3.71547e-09, 0, 0.085, 0, 0.085, 0, -0.085, 0, -3.71547
 [node name="AnimationTree" type="AnimationTree" parent="Body"]
 tree_root = SubResource("AnimationNodeStateMachine_bw6hx")
 anim_player = NodePath("../racoon_rigged/AnimationPlayer")
+advance_expression_base_node = NodePath("../../StateMachine")
 active = true
-parameters/conditions/idle = false
-parameters/conditions/run = false
-parameters/conditions/walk = false
 
 [node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0817897, 0.0103375, -0.0207022, -0.0122426, 0.0451991, 0.0709377, 0.0196358, 0.0712403, -0.0420031, 0.407175, -0.0595055, 0.923272)
+transform = Transform3D(-0.0839295, 0.00431734, -0.0127355, -0.00864551, 0.0443344, 0.072005, 0.0102999, 0.0723935, -0.0433369, 0.290201, -0.0765764, 0.945064)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail1"
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
 [node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0802934, 0.0144063, -0.0238836, -0.0142214, 0.0414674, 0.0728231, 0.0239942, 0.0727868, -0.0367609, -0.755522, 0.794443, 1.11566)
+transform = Transform3D(-0.0838942, 0.00706559, -0.0116982, -0.00700044, 0.0402708, 0.0745269, 0.0117373, 0.0745208, -0.0391649, -0.8916, 0.912478, 0.951317)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail2"
@@ -115,7 +108,7 @@ bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
 bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
 bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
 bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
-bones/3/rotation = Quaternion(-0.270273, 0.0201687, 0.08939, 0.958413)
+bones/3/rotation = Quaternion(-0.272329, 0.00233125, 0.0103323, 0.962146)
 bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
 bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
 bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)
@@ -129,11 +122,19 @@ bones/16/rotation = Quaternion(-0.185091, 0.00251814, -0.160738, 0.969483)
 bones/17/rotation = Quaternion(0.15593, -0.00410408, -0.275002, 0.948706)
 
 [node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_hst0t")
+initial_state = NodePath("Idle")
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_gponi")
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("6_5y0od")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_euwda")
 
 [node name="Air" type="Node" parent="StateMachine"]
-
-[node name="WallRun" type="Node" parent="StateMachine"]
+script = ExtResource("8_27488")
 
 [editable path="Body/racoon_rigged"]

@@ -25,7 +25,15 @@ func physics_update(delta):
 		#player.velocity.z = player.direction.z * player.SPEED
 		var xz_direction = Vector2(player.direction.x, player.direction.z)
 		var target_velocity = xz_direction * player.WALK_SPEED
+		
 		player.apply_movement(target_velocity, delta)
 		player.apply_gravity(delta)
+		
+		if player.stream_player.stream == player.s_run:
+			player.stream_player.stop()
+		
+		if not player.stream_player.is_playing():
+			player.stream_player.stream = player.s_walk
+			player.stream_player.play()
 
 	player.align_model_with_movement(delta)

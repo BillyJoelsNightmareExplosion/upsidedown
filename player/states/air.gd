@@ -8,6 +8,9 @@ func enter(msg := {}):
 		player.velocity += msg["jump_vector"]  * player.JUMP_VELOCITY
 		player.velocity.y = msg["jump_vector"].y * player.JUMP_VELOCITY
 		initial_xz_velocity = Vector2(player.velocity.x, player.velocity.z)
+		
+		player.stream_player.stream = player.s_jump
+		player.stream_player.play()
 	was_sprinting = msg.has("was_sprinting")
 	#player.anim_tree.active = false
 

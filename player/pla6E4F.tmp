@@ -92,14 +92,14 @@ advance_expression_base_node = NodePath("../../StateMachine")
 active = true
 
 [node name="Jigglebone" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0834592, 0.00762588, -0.0141919, -0.00813197, 0.0446978, 0.07184, 0.0139081, 0.0718954, -0.043158, 0.253704, -0.238831, 1.03256)
+transform = Transform3D(-0.0803402, 0.0124622, -0.024802, -0.0146189, 0.045566, 0.0702497, 0.0235953, 0.0706642, -0.0409247, 0.460637, -0.20477, 0.987617)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail1"
 skeleton = NodePath("../racoon_rigged/Armature/Skeleton3D")
 
 [node name="Jigglebone2" type="Node3D" parent="Body" node_paths=PackedStringArray("skeleton")]
-transform = Transform3D(-0.0839384, 0.0076457, -0.0109946, -0.00609941, 0.0402996, 0.0745905, 0.0119221, 0.0744478, -0.0392477, -0.88976, 0.772299, 0.992305)
+transform = Transform3D(-0.0801492, 0.0151141, -0.0239306, -0.0139031, 0.0415756, 0.0728229, 0.0246539, 0.0725812, -0.0367308, -0.756524, 0.675741, 1.16139)
 top_level = true
 script = ExtResource("2_3mvvo")
 bone_name = "tail2"
@@ -116,7 +116,7 @@ bones/0/rotation = Quaternion(-8.10979e-08, -1.41745e-08, -0.156882, 0.987617)
 bones/1/position = Vector3(-3.28595, -2.79393, 3.75389e-07)
 bones/1/rotation = Quaternion(-0.430845, 0.560689, 0.430845, 0.560689)
 bones/2/rotation = Quaternion(-0.121767, -4.90917e-08, 3.94471e-08, 0.992559)
-bones/3/rotation = Quaternion(-0.268267, 0.0304437, 0.13493, 0.953362)
+bones/3/rotation = Quaternion(-0.269231, 0.0258883, 0.11474, 0.955866)
 bones/6/rotation = Quaternion(-0.497074, 0.076163, -0.231393, 0.832811)
 bones/7/rotation = Quaternion(-0.385748, 0.0110086, 0.00913008, 0.922493)
 bones/8/rotation = Quaternion(0.250155, -0.0030541, 0.145096, 0.957267)

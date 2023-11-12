@@ -8,6 +8,7 @@ func enter(msg := {}):
 		player.velocity.y = player.JUMP_VELOCITY
 		initial_xz_velocity = Vector2(player.velocity.x, player.velocity.z)
 	was_sprinting = msg.has("was_sprinting")
+	#player.anim_tree.active = false
 
 func physics_update(delta):
 	var vec = calculate_xz_vector(Vector2(player.velocity.x, player.velocity.z), Vector2(player.direction.x, player.direction.z), delta)
@@ -19,8 +20,12 @@ func physics_update(delta):
 
 	# Landing check
 	if player.is_on_floor():
+		#player.anim_tree.active = true
 		if player.velocity.is_equal_approx(Vector3.ZERO):
 			state_machine.transition_to("Idle")
+			return
+		elif Input.is_action_pressed("move_spr"):
+			state_machine.transition_to("Sprint")
 			return
 		else:
 			state_machine.transition_to("Walk")

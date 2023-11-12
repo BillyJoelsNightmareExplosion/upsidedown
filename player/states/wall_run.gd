@@ -51,10 +51,9 @@ func physics_update(delta):
 	
 func set_travel_direction():
 	wall_normal = current_collider.get_collision_normal()
-	if wall_side == "left":
-		travel_direction = wall_normal.rotated(Vector3.UP, PI/2)
-	else:
-		travel_direction = wall_normal.rotated(Vector3.UP, -PI/2)
+	var sign = 1.0 if wall_side == "left" else -1.0
+	travel_direction = wall_normal.rotated(Vector3.UP, sign * PI/2)
+	player.body.rotation_degrees.z = -20 * sign
 	travel_direction.y = 0
 	travel_direction = travel_direction.normalized()
 

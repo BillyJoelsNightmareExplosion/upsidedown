@@ -8,14 +8,14 @@ var elapsed_time = 0
 @export var heightCorrection = 0.7
 
 @onready var models = [
-	$Area3D/MeshInstance3D,
-	$Area3D/box,
-	$Area3D/capsule,
-	$Area3D/cylinder,
-	$Area3D/plane,
-	$Area3D/quad,
-	$Area3D/prism,
-	$Area3D/torus
+	$Area3D/fork1,
+	$Area3D/knife1,
+	$Area3D/spoon1,
+	$Area3D/fork2,
+	$Area3D/knife2,
+	$Area3D/spoon2,
+	$Area3D/fork3,
+	$Area3D/knife3
 ]
 
 # When the player touches the collectable, delete it and subtract the total number of collectables
@@ -30,3 +30,4 @@ func is_player_touching_me() -> bool:
 func _process(delta):
 	elapsed_time += delta
 	$Area3D.position.y = sin(elapsed_time * hoverSpeed) / hoverRange + heightCorrection
+	$Area3D.rotation.y += delta

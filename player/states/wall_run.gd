@@ -33,7 +33,10 @@ func physics_update(delta):
 	if (Input.is_action_just_pressed("move_jum")):
 		print("jump press")
 		calculate_launch_vector()
-		state_machine.transition_to("Air", {jump_vector = calculate_launch_vector()})
+		state_machine.transition_to("Air", {
+			jump_vector = calculate_launch_vector(),
+			was_sprinting = true
+			})
 		return
 	#if player.direction.dot(wall_normal) > 0 or player.input_dir == Vector2.ZERO:
 		#print("dot")
@@ -63,8 +66,8 @@ func delayed_collider_check():
 
 
 func calculate_launch_vector():
-	if (Input.is_action_pressed("move_right") and wall_side == "left"):
+	if (Input.is_action_pressed("move_rig") and wall_side == "left"):
 			return (wall_normal + Vector3.UP).normalized()
-	elif (Input.is_action_pressed("move_left") and wall_side == "right"):
+	elif (Input.is_action_pressed("move_lef") and wall_side == "right"):
 		return (wall_normal + Vector3.UP).normalized()
 	return (wall_normal * 2 + Vector3.UP).normalized()
